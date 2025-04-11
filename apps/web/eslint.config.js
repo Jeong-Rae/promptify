@@ -69,6 +69,11 @@ export default [
 
             // 코드 클린업
             "no-param-reassign": "error",
+            "padding-line-between-statements": [
+                "error",
+                { blankLine: "always", prev: "import", next: "*" },
+                { blankLine: "any", prev: "import", next: "import" },
+            ],
 
             // Import 관련 규칙
             "sort-imports": "off",

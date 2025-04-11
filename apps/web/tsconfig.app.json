@@ -28,7 +28,7 @@
             "@assets/*": ["src/assets/*"],
             "@components/*": ["src/components/*"],
             "@constants/*": ["src/constants/*"],
-            "@container/*": ["src/container/*"],
+            "@containers/*": ["src/containers/*"],
             "@hooks/*": ["src/hooks/*"]
         }
     },
