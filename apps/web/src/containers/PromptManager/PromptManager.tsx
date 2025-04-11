@@ -1,7 +1,8 @@
-import type { ReactNode } from "react";
 import { Flex } from "@radix-ui/themes";
 
 import { RuleInputForm } from "@components/prompt/RuleInputForm";
+
+import type { ReactNode } from "react";
 
 export default function PromptManager(): ReactNode {
     return (

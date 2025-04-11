@@ -1,5 +1,6 @@
+import { Flex, Text, TextField } from "@promptify/ui";
+
 import type { ReactNode } from "react";
-import { Flex, Text, TextField } from "@radix-ui/themes";
 
 export default function RuleNameInput(): ReactNode {
     return (
@@ -7,12 +8,7 @@ export default function RuleNameInput(): ReactNode {
             <Text as="label" htmlFor="rule-name" size="4" weight="medium">
                 프롬프트 이름
             </Text>
-            <TextField.Root
-                placeholder="프롬프트 이름"
-                id="rule-name"
-                color="teal"
-                variant="surface"
-            />
+            <TextField placeholder="프롬프트 이름" id="rule-name" />
         </Flex>
     );
 }

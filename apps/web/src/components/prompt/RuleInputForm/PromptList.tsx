@@ -1,7 +1,8 @@
-import type { ReactNode } from "react";
-import { Flex } from "@radix-ui/themes";
+import { Flex } from "@promptify/ui";
 
 import PromptItem from "./PromptItem";
+
+import type { ReactNode } from "react";
 
 type PromptListProps = {
     prompts: string[];
