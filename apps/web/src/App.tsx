@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { RootPage } from "./pages/Root";
+import { RootPage } from "@pages/Root";
 
-function App() {
+import type { ReactNode } from "react";
+
+function App(): ReactNode {
     return (
         <BrowserRouter>
             <Routes>

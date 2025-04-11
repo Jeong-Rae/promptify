@@ -1,7 +1,9 @@
+import type { ReactNode } from "react";
 import { Flex } from "@radix-ui/themes";
+
 import { RuleInputForm } from "@components/prompt/RuleInputForm";
 
-export default function PromptManager(): React.ReactNode {
+export default function PromptManager(): ReactNode {
     return (
         <Flex
             direction="column"
@@ -9,7 +11,6 @@ export default function PromptManager(): React.ReactNode {
                 height: "100%",
                 overflow: "auto",
                 backgroundColor: "white",
-                boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
             }}
             p="6"
         >

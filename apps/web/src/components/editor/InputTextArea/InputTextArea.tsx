@@ -2,7 +2,9 @@ import { Flex, TextArea, Text } from "@radix-ui/themes";
 
 import { INPUT_TEXTAREA_LABEL, INPUT_TEXTAREA_PLACEHOLDER } from "./constants";
 
-export default function InputTextArea() {
+import type { ReactNode } from "react";
+
+export default function InputTextArea(): ReactNode {
     return (
         <Flex direction="column" gap="2" flexGrow="1" m="0">
             <Text as="label" htmlFor="input-text" size="4" weight="medium">

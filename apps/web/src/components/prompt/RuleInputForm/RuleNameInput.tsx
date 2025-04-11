@@ -1,6 +1,7 @@
+import type { ReactNode } from "react";
 import { Flex, Text, TextField } from "@radix-ui/themes";
 
-export default function RuleNameInput(): React.ReactNode {
+export default function RuleNameInput(): ReactNode {
     return (
         <Flex direction="column" gap="2" m="0">
             <Text as="label" htmlFor="rule-name" size="4" weight="medium">

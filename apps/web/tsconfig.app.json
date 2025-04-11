@@ -29,7 +29,8 @@
             "@components/*": ["src/components/*"],
             "@constants/*": ["src/constants/*"],
             "@containers/*": ["src/containers/*"],
-            "@hooks/*": ["src/hooks/*"]
+            "@hooks/*": ["src/hooks/*"],
+            "@pages/*": ["src/pages/*"]
         }
     },
     "include": ["src"]

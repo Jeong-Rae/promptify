@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { TextArea } from "@radix-ui/themes";
 
 type PromptItemProps = {
@@ -5,7 +6,7 @@ type PromptItemProps = {
     text: string;
 };
 
-export default function PromptItem({ index, text }: PromptItemProps): React.ReactNode {
+export default function PromptItem({ index, text }: PromptItemProps): ReactNode {
     return (
         <TextArea
             placeholder={`프롬프트 #${index + 1}`}
