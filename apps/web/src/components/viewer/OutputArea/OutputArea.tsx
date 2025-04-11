@@ -4,8 +4,8 @@ import { TEXT_LABEL_OUTPUT, TEXT_PLACEHOLDER_OUTPUT } from "./constants";
 
 export default function OutputArea() {
     return (
-        <Flex direction="column" flexGrow="1" mt="4">
-            <Text as="label" htmlFor="output-text" size="4" weight="medium" mb="2">
+        <Flex direction="column" gap="2" flexGrow="1" m="0">
+            <Text as="label" htmlFor="output-text" size="4" weight="medium">
                 {TEXT_LABEL_OUTPUT}
             </Text>
             <TextArea

@@ -1,18 +1,17 @@
-import { Text, TextField } from "@radix-ui/themes";
+import { Flex, Text, TextField } from "@radix-ui/themes";
 
 export default function RuleNameInput(): React.ReactNode {
     return (
-        <>
-            <Text as="label" htmlFor="rule-name" size="4" weight="medium" mb="2">
+        <Flex direction="column" gap="2" m="0">
+            <Text as="label" htmlFor="rule-name" size="4" weight="medium">
                 프롬프트 이름
             </Text>
             <TextField.Root
-                mb="4"
                 placeholder="프롬프트 이름"
                 id="rule-name"
                 color="teal"
                 variant="surface"
             />
-        </>
+        </Flex>
     );
 }

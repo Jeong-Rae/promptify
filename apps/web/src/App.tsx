@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Root } from "./pages/Root";
+import { RootPage } from "./pages/Root";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Root />} />
+                <Route path="/" element={<RootPage />} />
             </Routes>
         </BrowserRouter>
     );

@@ -1,1 +1,1 @@
-export { default as TextRefinerContainer } from "./TextRefinerContainer";
+export { default as TextRefiner } from "./TextRefiner";

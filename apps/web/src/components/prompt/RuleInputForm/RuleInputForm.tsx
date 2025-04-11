@@ -1,4 +1,4 @@
-import { Flex, Heading } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import { useState } from "react";
 
 import PromptAddButton from "./PromptAddButton";
@@ -9,11 +9,7 @@ export default function RuleInputForm(): React.ReactNode {
     const [prompts] = useState<string[]>([""]);
 
     return (
-        <Flex direction="column" p="6">
-            <Heading size="4" mb="3">
-                새 변환 프롬프트 생성
-            </Heading>
-
+        <Flex direction="column" gap="3" m="0">
             <RuleNameInput />
             <PromptList prompts={prompts} />
 

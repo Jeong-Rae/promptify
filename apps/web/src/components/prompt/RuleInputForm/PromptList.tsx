@@ -8,7 +8,7 @@ type PromptListProps = {
 
 export default function PromptList({ prompts }: PromptListProps): React.ReactNode {
     return (
-        <Flex direction="column" gap="2" mb="2">
+        <Flex direction="column" gap="2" m="0">
             {prompts.map((text, idx) => (
                 <PromptItem key={idx} index={idx} text={text} />
             ))}
