@@ -5,7 +5,7 @@ import { TEXTAREA_LABEL_INPUT_ORIGINAL, TEXTAREA_PLACEHOLDER_INPUT_ORIGINAL } fr
 export default function PromptTextArea() {
     return (
         <Flex direction="column" flexGrow="1" mb="4">
-            <Text as="label" htmlFor="input-text" size="4" weight="medium" mb="1">
+            <Text as="label" htmlFor="input-text" size="4" weight="medium" mb="2">
                 {TEXTAREA_LABEL_INPUT_ORIGINAL}
             </Text>
             <TextArea
