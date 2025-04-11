@@ -1,6 +1,7 @@
-import { Flex, TextArea, Text } from "@radix-ui/themes";
+import { Flex, TextArea, Text } from "@promptify/ui";
 
 import { TEXT_LABEL_OUTPUT, TEXT_PLACEHOLDER_OUTPUT } from "./constants";
+import styles from "./OutputArea.module.scss";
 
 import type { ReactNode } from "react";
 
@@ -13,7 +14,7 @@ export default function OutputArea(): ReactNode {
             <TextArea
                 id="output-text"
                 placeholder={TEXT_PLACEHOLDER_OUTPUT}
-                style={{ minHeight: "128px" }}
+                className={styles.OutputArea__textarea}
                 color="teal"
                 variant="surface"
                 readOnly

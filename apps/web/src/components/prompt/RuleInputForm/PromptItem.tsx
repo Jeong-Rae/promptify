@@ -1,5 +1,7 @@
 import { TextArea } from "@promptify/ui";
 
+import styles from "./PromptItem.module.scss";
+
 import type { ReactNode } from "react";
 
 type PromptItemProps = {
@@ -12,7 +14,7 @@ export default function PromptItem({ index, text }: PromptItemProps): ReactNode 
         <TextArea
             placeholder={`프롬프트 #${index + 1}`}
             value={text}
-            style={{ minHeight: "60px" }}
+            className={styles.PromptItem__textarea}
         />
     );
 }

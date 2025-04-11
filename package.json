@@ -26,8 +26,14 @@
         "@prisma/client": "^6.6.0"
     },
     "lint-staged": {
-        "**/*.{js,jsx,ts,tsx}": [
-            "pnpm lint"
+        "apps/web/src/**/*.{js,jsx,ts,tsx}": [
+            "pnpm --filter=web lint"
+        ],
+        "apps/api/src/**/*.{js,jsx,ts,tsx}": [
+            "pnpm --filter=api lint"
+        ],
+        "packages/ui/src/**/*.{js,jsx,ts,tsx}": [
+            "pnpm --filter=ui lint"
         ]
     }
 }
