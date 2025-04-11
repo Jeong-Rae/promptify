@@ -1,5 +1,5 @@
-import PromptEditorContainer from "@containers/PromptEditor/PromptEditor";
+import { TextRefinerContainer } from "@containers/TextRefiner";
 
 export const Root = () => {
-    return <PromptEditorContainer />;
+    return <TextRefinerContainer />;
 };

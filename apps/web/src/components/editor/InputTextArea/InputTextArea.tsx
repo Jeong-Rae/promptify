@@ -1,16 +1,16 @@
 import { Flex, TextArea, Text } from "@radix-ui/themes";
 
-import { TEXTAREA_LABEL_INPUT_ORIGINAL, TEXTAREA_PLACEHOLDER_INPUT_ORIGINAL } from "./constants";
+import { INPUT_TEXTAREA_LABEL, INPUT_TEXTAREA_PLACEHOLDER } from "./constants";
 
-export default function PromptTextArea() {
+export default function InputTextArea() {
     return (
         <Flex direction="column" flexGrow="1" mb="4">
             <Text as="label" htmlFor="input-text" size="4" weight="medium" mb="2">
-                {TEXTAREA_LABEL_INPUT_ORIGINAL}
+                {INPUT_TEXTAREA_LABEL}
             </Text>
             <TextArea
                 id="input-text"
-                placeholder={TEXTAREA_PLACEHOLDER_INPUT_ORIGINAL}
+                placeholder={INPUT_TEXTAREA_PLACEHOLDER}
                 style={{ minHeight: "128px" }}
                 color="teal"
                 variant="surface"
