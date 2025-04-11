@@ -1,4 +1,5 @@
 import { Flex, TextArea, Text } from "@radix-ui/themes";
+
 import { TEXTAREA_LABEL_INPUT_ORIGINAL, TEXTAREA_PLACEHOLDER_INPUT_ORIGINAL } from "./constants";
 
 export default function PromptTextArea() {
