@@ -1,25 +1,33 @@
 {
-  "name": "promptify",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "turbo run dev --parallel --output-logs=full",
-    "build": "turbo run build",
-    "lint": "turbo run lint",
-    "test": "turbo run test",
-    "format": "turbo run format"
-  },
-  "type": "module",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@9.6.0",
-  "devDependencies": {
-    "prisma": "^6.6.0",
-    "turbo": "^2.5.0"
-  },
-  "dependencies": {
-    "@prisma/client": "^6.6.0"
-  }
+    "name": "promptify",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "turbo run dev --parallel --output-logs=full",
+        "build": "turbo run build",
+        "lint": "turbo run lint",
+        "test": "turbo run test",
+        "format": "turbo run format",
+        "prepare": "husky"
+    },
+    "type": "module",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "packageManager": "pnpm@9.6.0",
+    "devDependencies": {
+        "husky": "^9.1.7",
+        "lint-staged": "^15.5.1",
+        "prisma": "^6.6.0",
+        "turbo": "^2.5.0"
+    },
+    "dependencies": {
+        "@prisma/client": "^6.6.0"
+    },
+    "lint-staged": {
+        "**/*.{js,jsx,ts,tsx}": [
+            "pnpm lint"
+        ]
+    }
 }
