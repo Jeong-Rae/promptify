@@ -31,8 +31,8 @@
             "@containers/*": ["src/containers/*"],
             "@hooks/*": ["src/hooks/*"],
             "@pages/*": ["src/pages/*"],
-            "@types/*": ["src/types/*"]
+            "@types/*": ["../../packages/shared/types/*"]
         }
     },
-    "include": ["src"]
+    "include": ["src", "../../packages/shared/types", "../../packages/types/src"]
 }

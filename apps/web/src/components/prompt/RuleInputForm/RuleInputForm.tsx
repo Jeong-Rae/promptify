@@ -2,7 +2,7 @@ import { Flex } from "@promptify/ui";
 import { useState } from "react";
 
 import PromptAddButton from "./PromptAddButton";
-import PromptList from "./PromptList";
+import { default as PromptList } from "./PromptList";
 import RuleNameInput from "./RuleNameInput";
 
 import type { ReactNode } from "react";
