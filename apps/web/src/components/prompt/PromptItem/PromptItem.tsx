@@ -1,8 +1,9 @@
 import { TextArea } from "@promptify/ui";
 import clsx from "clsx";
 
+import { useRuleFormContext } from "../RuleInputForm/RuleFormContext";
+
 import styles from "./PromptItem.module.scss";
-import { useRuleFormContext } from "./RuleFormContext";
 
 import type { Prompt } from "@promptify/types";
 import type { ReactNode } from "react";

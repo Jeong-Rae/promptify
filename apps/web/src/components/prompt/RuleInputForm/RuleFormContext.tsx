@@ -3,7 +3,7 @@ import { createContext, useContext } from "react";
 import { useRuleForm } from "./useRuleForm";
 
 import type { Prompt, PromptList } from "@promptify/types";
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 
 type RuleFormContextType = {
     ruleName: string;
@@ -22,7 +22,7 @@ export const useRuleFormContext = (): RuleFormContextType => {
     return ctx;
 };
 
-export function RuleFormProvider({ children }: { children: ReactNode }): ReactNode {
+export function RuleFormProvider({ children }: { children: ReactNode }): JSX.Element {
     const state = useRuleForm();
     return <RuleFormContext.Provider value={state}>{children}</RuleFormContext.Provider>;
 }

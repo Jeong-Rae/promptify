@@ -1,8 +1,9 @@
 import { Flex } from "@promptify/ui";
 
-import PromptItem from "./PromptItem";
+import PromptItem from "../PromptItem";
+import { useRuleFormContext } from "../RuleInputForm/RuleFormContext";
+
 import styles from "./PromptListView.module.scss";
-import { useRuleFormContext } from "./RuleFormContext";
 
 import type { ReactNode } from "react";
 

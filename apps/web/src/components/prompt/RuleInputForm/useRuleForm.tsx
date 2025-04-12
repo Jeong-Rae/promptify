@@ -22,7 +22,9 @@ type RuleFormReturn = {
 
 function loadFromLocalStorage(): RuleFormDraft {
     try {
-        const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+        if (typeof window === "undefined") return { ruleName: "", prompts: [""] };
+
+        const stored = window.localStorage.getItem(LOCAL_STORAGE_KEY);
         if (isNil(stored)) return { ruleName: "", prompts: [""] };
 
         const parsed = JSON.parse(stored);
@@ -43,8 +45,10 @@ export function useRuleForm(): RuleFormReturn {
     const [prompts, setPrompts] = useState(() => loadFromLocalStorage().prompts);
 
     const debouncedSaveRef = useRef(
-        debounce((next: RuleFormDraft) => {
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(next));
+        debounce((next: RuleFormDraft): void => {
+            if (typeof window !== "undefined") {
+                window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(next));
+            }
         }, 1000)
     );
 
