@@ -1,6 +1,6 @@
 import { Button } from "@promptify/ui";
 
-import { useRuleFormContext } from "../RuleInputForm/RuleFormContext";
+import { useRuleFormContext } from "../RuleFormContext";
 
 import type { ReactNode } from "react";
 

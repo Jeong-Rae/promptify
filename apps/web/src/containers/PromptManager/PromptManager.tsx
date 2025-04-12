@@ -1,6 +1,6 @@
 import { Flex } from "@promptify/ui";
 
-import { RuleInputForm } from "@components/prompt/RuleInputForm";
+import RuleInputForm from "@components/prompt/RuleInputForm";
 
 import styles from "./PromptManager.module.scss";
 

@@ -1,1 +1,1 @@
-export { default as RootPage } from "./Root";
+export { default } from "./Root";

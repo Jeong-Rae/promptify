@@ -12,6 +12,7 @@ export default function OutputArea(): ReactNode {
                 {TEXT_LABEL_OUTPUT}
             </Text>
             <TextArea
+                rows={10}
                 id="output-text"
                 placeholder={TEXT_PLACEHOLDER_OUTPUT}
                 className={styles.OutputArea__textarea}

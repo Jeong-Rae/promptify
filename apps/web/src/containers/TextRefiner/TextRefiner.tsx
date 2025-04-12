@@ -1,8 +1,8 @@
 import { Flex } from "@promptify/ui";
 
-import { InputTextArea } from "@components/editor/InputTextArea";
-import { RefineButton } from "@components/editor/RefineButton";
-import { OutputArea } from "@components/viewer/OutputArea";
+import InputTextArea from "@components/editor/InputTextArea";
+import RefineButton from "@components/editor/RefineButton";
+import OutputArea from "@components/viewer/OutputArea";
 
 import styles from "./TextRefiner.module.scss";
 
