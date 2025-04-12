@@ -3,29 +3,34 @@ import tseslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 import prettier from "eslint-plugin-prettier";
 import importPlugin from "eslint-plugin-import";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default [
     {
-        ignores: ["dist/**", "sample/**"],
+        ignores: ["dist/**"],
     },
     eslint.configs.recommended,
     {
-        files: ["**/*.ts"],
+        files: ["**/*.ts", "**/*.tsx"],
         languageOptions: {
             parser: tsParser,
             parserOptions: {
                 ecmaVersion: 2022,
                 sourceType: "module",
-                project: "./tsconfig.json",
+                project: [
+                    join(__dirname, "tsconfig.app.json"),
+                    join(__dirname, "tsconfig.node.json"),
+                ],
             },
             globals: {
-                URL: "readonly",
-                process: "readonly",
-                describe: "readonly",
-                it: "readonly",
-                expect: "readonly",
-                beforeEach: "readonly",
-                afterAll: "readonly",
+                // 브라우저 전역 변수
+                document: "readonly",
+                window: "readonly",
+                navigator: "readonly",
             },
         },
         plugins: {
@@ -64,6 +69,11 @@ export default [
 
             // 코드 클린업
             "no-param-reassign": "error",
+            "padding-line-between-statements": [
+                "error",
+                { blankLine: "always", prev: "import", next: "*" },
+                { blankLine: "any", prev: "import", next: "import" },
+            ],
 
             // Import 관련 규칙
             "sort-imports": "off",

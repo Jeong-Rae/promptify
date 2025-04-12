@@ -1,10 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+import { RootPage } from "@pages/Root";
+
+import type { ReactNode } from "react";
+
+function App(): ReactNode {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<div>Hello World</div>} />
+                <Route path="/" element={<RootPage />} />
             </Routes>
         </BrowserRouter>
     );
