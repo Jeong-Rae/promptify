@@ -1,7 +1,7 @@
 import { TextArea } from "@promptify/ui";
 
 import styles from "./PromptItem.module.scss";
-import { usePromptListContext } from "./PromptListContext";
+import { useRuleFormContext } from "./RuleFormContext";
 
 import type { Prompt } from "@promptify/types";
 import type { ReactNode } from "react";
@@ -12,13 +12,14 @@ type PromptItemProps = {
 };
 
 export default function PromptItem({ index, prompt }: PromptItemProps): ReactNode {
-    const { updatePrompt } = usePromptListContext();
+    const { updatePrompt, saveToLocalStorage } = useRuleFormContext();
 
     return (
         <TextArea
             placeholder={`프롬프트 #${index + 1}`}
             value={prompt}
             onChange={(e) => updatePrompt(index, e.target.value)}
+            onBlur={saveToLocalStorage}
             className={styles.PromptItem__textarea}
         />
     );

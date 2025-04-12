@@ -1,12 +1,12 @@
 import { Flex } from "@promptify/ui";
 
 import PromptItem from "./PromptItem";
-import { usePromptListContext } from "./PromptListContext";
+import { useRuleFormContext } from "./RuleFormContext";
 
 import type { ReactNode } from "react";
 
 export default function PromptListView(): ReactNode {
-    const { prompts } = usePromptListContext();
+    const { prompts } = useRuleFormContext();
 
     return (
         <Flex direction="column" gap="2" m="0">

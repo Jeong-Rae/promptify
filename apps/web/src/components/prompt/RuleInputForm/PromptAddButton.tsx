@@ -1,11 +1,11 @@
 import { Button } from "@promptify/ui";
 
-import { usePromptListContext } from "./PromptListContext";
+import { useRuleFormContext } from "./RuleFormContext";
 
 import type { ReactNode } from "react";
 
 export default function PromptAddButton(): ReactNode {
-    const { addPrompt } = usePromptListContext();
+    const { addPrompt } = useRuleFormContext();
 
     return (
         <Button type="button" size="3" variant="soft" onClick={addPrompt}>
