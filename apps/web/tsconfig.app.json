@@ -28,8 +28,9 @@
             "@assets/*": ["src/assets/*"],
             "@components/*": ["src/components/*"],
             "@constants/*": ["src/constants/*"],
-            "@container/*": ["src/container/*"],
-            "@hooks/*": ["src/hooks/*"]
+            "@containers/*": ["src/containers/*"],
+            "@hooks/*": ["src/hooks/*"],
+            "@pages/*": ["src/pages/*"]
         }
     },
     "include": ["src"]

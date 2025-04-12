@@ -26,10 +26,18 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+html,
 body {
     margin: 0;
-    display: flex;
-    place-items: center;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
 }
 
 @media (prefers-color-scheme: light) {
