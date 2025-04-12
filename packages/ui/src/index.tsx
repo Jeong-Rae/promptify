@@ -4,3 +4,4 @@ export * from "./TextField";
 export * from "./Text";
 export * from "./Flex";
 export * from "./Heading";
+export * from "./Theme";
