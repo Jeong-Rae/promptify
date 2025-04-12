@@ -1,4 +1,5 @@
 import { TextArea } from "@promptify/ui";
+import clsx from "clsx";
 
 import styles from "./PromptItem.module.scss";
 import { useRuleFormContext } from "./RuleFormContext";
@@ -21,7 +22,7 @@ export default function PromptItem({ index, prompt }: PromptItemProps): ReactNod
             value={prompt}
             onChange={(e) => updatePrompt(index, e.target.value)}
             onBlur={saveToLocalStorage}
-            className={styles.PromptItem__textarea}
+            className={clsx(styles.PromptItem__textarea)}
         />
     );
 }

@@ -1,0 +1,16 @@
+.RuleNameInput {
+    font-size: 1.75rem;
+    font-weight: 700;
+
+    &--blurred {
+        background: transparent;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        caret-color: transparent;
+
+        &:hover {
+            cursor: text;
+        }
+    }
+}
