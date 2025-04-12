@@ -16,6 +16,7 @@ export default function PromptItem({ index, prompt }: PromptItemProps): ReactNod
 
     return (
         <TextArea
+            rows={3}
             placeholder={`프롬프트 #${index + 1}`}
             value={prompt}
             onChange={(e) => updatePrompt(index, e.target.value)}
