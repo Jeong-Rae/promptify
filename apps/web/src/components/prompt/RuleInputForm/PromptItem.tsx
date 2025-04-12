@@ -1,19 +1,24 @@
 import { TextArea } from "@promptify/ui";
 
 import styles from "./PromptItem.module.scss";
+import { usePromptListContext } from "./PromptListContext";
 
+import type { Prompt } from "@promptify/types";
 import type { ReactNode } from "react";
 
 type PromptItemProps = {
     index: number;
-    text: string;
+    prompt: Prompt;
 };
 
-export default function PromptItem({ index, text }: PromptItemProps): ReactNode {
+export default function PromptItem({ index, prompt }: PromptItemProps): ReactNode {
+    const { updatePrompt } = usePromptListContext();
+
     return (
         <TextArea
             placeholder={`프롬프트 #${index + 1}`}
-            value={text}
+            value={prompt}
+            onChange={(e) => updatePrompt(index, e.target.value)}
             className={styles.PromptItem__textarea}
         />
     );
