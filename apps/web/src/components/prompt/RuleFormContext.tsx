@@ -11,6 +11,8 @@ type RuleFormContextType = {
     updateRuleName: (name: string) => void;
     updatePrompt: (index: number, value: Prompt) => void;
     addPrompt: () => void;
+    removePrompt: (index: number) => void;
+    resetForm: () => void;
     saveToLocalStorage: () => void;
 };
 

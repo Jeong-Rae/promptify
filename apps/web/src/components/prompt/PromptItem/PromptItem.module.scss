@@ -1,6 +1,24 @@
 .PromptItem {
     &__textarea {
-        flex-shrink: 0;
+        flex: 1 0 auto;
         padding: 1px 0;
+    }
+
+    &__wrapper {
+        display: flex;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+
+    &__remove {
+        background: none;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+        color: #999;
+
+        &:hover {
+            color: #d00;
+        }
     }
 }

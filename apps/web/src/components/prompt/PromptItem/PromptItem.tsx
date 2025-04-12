@@ -14,16 +14,26 @@ type PromptItemProps = {
 };
 
 export default function PromptItem({ index, prompt }: PromptItemProps): ReactNode {
-    const { updatePrompt, saveToLocalStorage } = useRuleFormContext();
+    const { updatePrompt, saveToLocalStorage, removePrompt } = useRuleFormContext();
 
     return (
-        <TextArea
-            rows={3}
-            placeholder={`프롬프트 #${index + 1}`}
-            value={prompt}
-            onChange={(e) => updatePrompt(index, e.target.value)}
-            onBlur={saveToLocalStorage}
-            className={clsx(styles.PromptItem__textarea)}
-        />
+        <div className={styles.PromptItem__wrapper}>
+            <TextArea
+                rows={3}
+                placeholder={`프롬프트 #${index + 1}`}
+                value={prompt}
+                onChange={(e) => updatePrompt(index, e.target.value)}
+                onBlur={saveToLocalStorage}
+                className={clsx(styles.PromptItem__textarea)}
+            />
+            <button
+                type="button"
+                onClick={() => removePrompt(index)}
+                className={styles.PromptItem__remove}
+                aria-label="프롬프트 삭제"
+            >
+                ✕
+            </button>
+        </div>
     );
 }

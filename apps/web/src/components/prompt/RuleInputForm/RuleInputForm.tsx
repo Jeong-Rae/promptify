@@ -2,6 +2,7 @@ import { Flex } from "@promptify/ui";
 
 import PromptAddButton from "@components/prompt/PromptAddButton";
 import PromptListView from "@components/prompt/PromptListView";
+import PromptResetButton from "@components/prompt/PromptResetButton";
 import RuleNameInput from "@components/prompt/RuleNameInput";
 
 import { RuleFormProvider } from "../RuleFormContext";
@@ -14,7 +15,10 @@ export default function RuleInputForm(): ReactNode {
             <Flex direction="column" gap="3" m="0">
                 <RuleNameInput />
                 <PromptListView />
-                <PromptAddButton />
+                <Flex gap="2">
+                    <PromptAddButton />
+                    <PromptResetButton />
+                </Flex>
             </Flex>
         </RuleFormProvider>
     );

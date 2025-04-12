@@ -17,6 +17,8 @@ type RuleFormReturn = {
     updateRuleName: (nextName: string) => void;
     updatePrompt: (targetIndex: number, newPrompt: Prompt) => void;
     addPrompt: () => void;
+    removePrompt: (targetIndex: number) => void;
+    resetForm: () => void;
     saveToLocalStorage: () => void;
 };
 
@@ -78,12 +80,30 @@ export function useRuleForm(): RuleFormReturn {
         });
     };
 
+    const removePrompt = (targetIndex: number): void => {
+        setPrompts((prev) => {
+            const next = prev.length <= 1 ? [""] : prev.filter((_, idx) => idx !== targetIndex);
+            debouncedSaveRef.current({ ruleName, prompts: next });
+            return next;
+        });
+    };
+
+    const resetForm = (): void => {
+        const reset = { ruleName: "", prompts: [""] };
+        setRuleName(reset.ruleName);
+        setPrompts(reset.prompts);
+        debouncedSaveRef.current(reset);
+        debouncedSaveRef.current.flush();
+    };
+
     return {
         ruleName,
         prompts,
         updateRuleName,
         updatePrompt,
         addPrompt,
+        removePrompt,
+        resetForm,
         saveToLocalStorage,
     };
 }
