@@ -1,10 +1,11 @@
-import { debounce, isNil, isString } from "es-toolkit";
-import { isArray } from "es-toolkit/compat";
+import { debounce, isEqual, isNil, isString } from "es-toolkit";
+import { every, isArray, isObject } from "es-toolkit/compat";
 import { useRef, useState } from "react";
 
 import type { Prompt, PromptList } from "@promptify/types";
 
-const LOCAL_STORAGE_KEY = "draft:rule-form";
+const RULE_FORM_STORAGE_KEY = "draft:rule-form";
+const DEBOUNCE_SAVE_DELAY_MS = 1000;
 
 type RuleFormDraft = {
     ruleName: string;
@@ -14,87 +15,109 @@ type RuleFormDraft = {
 type RuleFormReturn = {
     ruleName: string;
     prompts: PromptList;
-    updateRuleName: (nextName: string) => void;
-    updatePrompt: (targetIndex: number, newPrompt: Prompt) => void;
+    updateRuleName: (name: string) => void;
+    updatePrompt: (index: number, value: Prompt) => void;
     addPrompt: () => void;
-    removePrompt: (targetIndex: number) => void;
+    removePrompt: (index: number) => void;
     resetForm: () => void;
+    restoreForm: () => void;
     saveToLocalStorage: () => void;
+    hasBackup: boolean;
 };
 
-function loadFromLocalStorage(): RuleFormDraft {
+const EMPTY_FORM: RuleFormDraft = {
+    ruleName: "",
+    prompts: [""],
+};
+
+function isValidRuleFormDraft(value: unknown): value is RuleFormDraft {
+    if (!isObject(value)) return false;
+
+    const draft = value as Partial<Record<keyof RuleFormDraft, unknown>>;
+
+    return isString(draft.ruleName) && isArray(draft.prompts) && draft.prompts.every(isString);
+}
+
+function loadInitialFormState(): RuleFormDraft {
     try {
-        if (typeof window === "undefined") return { ruleName: "", prompts: [""] };
-
-        const stored = window.localStorage.getItem(LOCAL_STORAGE_KEY);
-        if (isNil(stored)) return { ruleName: "", prompts: [""] };
-
-        const parsed = JSON.parse(stored);
-        const isValid =
-            typeof parsed === "object" &&
-            isString(parsed.ruleName) &&
-            isArray(parsed.prompts) &&
-            parsed.prompts.every((prompt: unknown) => isString(prompt));
-
-        return isValid ? parsed : { ruleName: "", prompts: [""] };
+        const raw = localStorage.getItem(RULE_FORM_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : null;
+        return isValidRuleFormDraft(parsed) ? parsed : EMPTY_FORM;
     } catch {
-        return { ruleName: "", prompts: [""] };
+        return EMPTY_FORM;
     }
 }
 
 export function useRuleForm(): RuleFormReturn {
-    const [ruleName, setRuleName] = useState(() => loadFromLocalStorage().ruleName);
-    const [prompts, setPrompts] = useState(() => loadFromLocalStorage().prompts);
+    const [ruleName, setRuleName] = useState(() => loadInitialFormState().ruleName);
+    const [prompts, setPrompts] = useState(() => loadInitialFormState().prompts);
+    const [backup, setBackup] = useState<RuleFormDraft | null>(null);
 
     const debouncedSaveRef = useRef(
-        debounce((next: RuleFormDraft): void => {
-            if (typeof window !== "undefined") {
-                window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(next));
-            }
-        }, 1000)
+        debounce((draft: RuleFormDraft) => {
+            localStorage.setItem(RULE_FORM_STORAGE_KEY, JSON.stringify(draft));
+        }, DEBOUNCE_SAVE_DELAY_MS)
     );
 
-    const saveToLocalStorage = (): void => {
-        debouncedSaveRef.current({ ruleName, prompts });
-        debouncedSaveRef.current.flush();
+    const saveToLocalStorageDraft = (draft: RuleFormDraft, flush = false): void => {
+        debouncedSaveRef.current(draft);
+        if (flush) debouncedSaveRef.current.flush();
     };
 
-    const updateRuleName = (nextName: string): void => {
-        setRuleName(nextName);
-        debouncedSaveRef.current({ ruleName: nextName, prompts });
+    const updateFormStateAndSave = (draft: RuleFormDraft): void => {
+        setRuleName(draft.ruleName);
+        setPrompts(draft.prompts);
+        saveToLocalStorageDraft(draft);
+    };
+
+    const updateRuleName = (name: string): void => {
+        setRuleName(name);
+        saveToLocalStorageDraft({ ruleName: name, prompts });
     };
 
     const updatePrompt = (targetIndex: number, newPrompt: Prompt): void => {
         setPrompts((prev) => {
-            const next = prev.map((current, idx) => (idx === targetIndex ? newPrompt : current));
-            debouncedSaveRef.current({ ruleName, prompts: next });
-            return next;
+            const updatedPrompts = prev.map((prompt, index) =>
+                index === targetIndex ? newPrompt : prompt
+            );
+            saveToLocalStorageDraft({ ruleName, prompts: updatedPrompts });
+            return updatedPrompts;
         });
     };
 
     const addPrompt = (): void => {
         setPrompts((prev) => {
             const next = [...prev, ""];
-            debouncedSaveRef.current({ ruleName, prompts: next });
+            saveToLocalStorageDraft({ ruleName, prompts: next });
             return next;
         });
     };
 
     const removePrompt = (targetIndex: number): void => {
         setPrompts((prev) => {
-            const next = prev.length <= 1 ? [""] : prev.filter((_, idx) => idx !== targetIndex);
-            debouncedSaveRef.current({ ruleName, prompts: next });
+            const next = prev.length <= 1 ? [""] : prev.filter((_, index) => index !== targetIndex);
+            saveToLocalStorageDraft({ ruleName, prompts: next });
             return next;
         });
     };
 
     const resetForm = (): void => {
-        const reset = { ruleName: "", prompts: [""] };
-        setRuleName(reset.ruleName);
-        setPrompts(reset.prompts);
-        debouncedSaveRef.current(reset);
-        debouncedSaveRef.current.flush();
+        setBackup({ ruleName, prompts });
+        updateFormStateAndSave(EMPTY_FORM);
+        saveToLocalStorageDraft(EMPTY_FORM, true);
     };
+
+    const restoreForm = (): void => {
+        if (backup) {
+            updateFormStateAndSave(backup);
+            saveToLocalStorageDraft(backup, true);
+            setBackup(null);
+        }
+    };
+
+    every;
+
+    const hasBackup = !isNil(backup) && isEqual({ ruleName, prompts }, EMPTY_FORM);
 
     return {
         ruleName,
@@ -104,6 +127,8 @@ export function useRuleForm(): RuleFormReturn {
         addPrompt,
         removePrompt,
         resetForm,
-        saveToLocalStorage,
+        restoreForm,
+        saveToLocalStorage: () => saveToLocalStorageDraft({ ruleName, prompts }, true),
+        hasBackup,
     };
 }

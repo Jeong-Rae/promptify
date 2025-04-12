@@ -14,7 +14,9 @@ type PromptItemProps = {
 };
 
 export default function PromptItem({ index, prompt }: PromptItemProps): ReactNode {
-    const { updatePrompt, saveToLocalStorage, removePrompt } = useRuleFormContext();
+    const { prompts, updatePrompt, saveToLocalStorage, removePrompt } = useRuleFormContext();
+
+    const isRemovable = prompts.length > 1;
 
     return (
         <div className={styles.PromptItem__wrapper}>
@@ -26,14 +28,16 @@ export default function PromptItem({ index, prompt }: PromptItemProps): ReactNod
                 onBlur={saveToLocalStorage}
                 className={clsx(styles.PromptItem__textarea)}
             />
-            <button
-                type="button"
-                onClick={() => removePrompt(index)}
-                className={styles.PromptItem__remove}
-                aria-label="프롬프트 삭제"
-            >
-                ✕
-            </button>
+            {isRemovable && (
+                <button
+                    type="button"
+                    onClick={() => removePrompt(index)}
+                    className={styles.PromptItem__remove}
+                    aria-label="프롬프트 삭제"
+                >
+                    ✕
+                </button>
+            )}
         </div>
     );
 }
