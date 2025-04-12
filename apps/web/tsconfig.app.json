@@ -30,7 +30,8 @@
             "@constants/*": ["src/constants/*"],
             "@containers/*": ["src/containers/*"],
             "@hooks/*": ["src/hooks/*"],
-            "@pages/*": ["src/pages/*"]
+            "@pages/*": ["src/pages/*"],
+            "@types/*": ["src/types/*"]
         }
     },
     "include": ["src"]
