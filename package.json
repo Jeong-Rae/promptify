@@ -23,7 +23,8 @@
         "turbo": "^2.5.0"
     },
     "dependencies": {
-        "@prisma/client": "^6.6.0"
+        "@prisma/client": "^6.6.0",
+        "@radix-ui/themes": "^3.2.1"
     },
     "lint-staged": {
         "apps/web/src/**/*.{js,jsx,ts,tsx}": [

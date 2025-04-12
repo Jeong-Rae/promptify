@@ -12,6 +12,7 @@ export default function InputTextArea(): ReactNode {
                 {INPUT_TEXTAREA_LABEL}
             </Text>
             <TextArea
+                rows={10}
                 id="input-text"
                 placeholder={INPUT_TEXTAREA_PLACEHOLDER}
                 className={styles.InputTextArea__textarea}

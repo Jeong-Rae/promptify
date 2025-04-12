@@ -1,1 +1,1 @@
-export { default as OutputArea } from "./OutputArea";
+export { default } from "./OutputArea";

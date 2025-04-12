@@ -1,1 +1,1 @@
-export { default as RefineButton } from "./RefineButton";
+export { default } from "./RefineButton";

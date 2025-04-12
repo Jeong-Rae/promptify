@@ -30,8 +30,9 @@
             "@constants/*": ["src/constants/*"],
             "@containers/*": ["src/containers/*"],
             "@hooks/*": ["src/hooks/*"],
-            "@pages/*": ["src/pages/*"]
+            "@pages/*": ["src/pages/*"],
+            "@types/*": ["../../packages/shared/types/*"]
         }
     },
-    "include": ["src"]
+    "include": ["src", "../../packages/shared/types", "../../packages/types/src"]
 }

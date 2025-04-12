@@ -1,1 +1,1 @@
-export { default as PromptManager } from "./PromptManager";
+export { default } from "./PromptManager";

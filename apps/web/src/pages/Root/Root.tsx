@@ -1,5 +1,5 @@
-import { PromptManager } from "@containers/PromptManager";
-import { TextRefiner } from "@containers/TextRefiner";
+import PromptManager from "@containers/PromptManager";
+import TextRefiner from "@containers/TextRefiner";
 
 import type { ReactNode } from "react";
 

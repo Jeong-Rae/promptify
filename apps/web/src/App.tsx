@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { RootPage } from "@pages/Root";
+import RootPage from "@pages/Root";
 
 import type { ReactNode } from "react";
 

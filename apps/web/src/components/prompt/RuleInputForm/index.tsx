@@ -1,1 +1,1 @@
-export { default as RuleInputForm } from "./RuleInputForm";
+export { default } from "./RuleInputForm";

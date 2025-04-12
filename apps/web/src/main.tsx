@@ -1,4 +1,4 @@
-import { Theme } from "@radix-ui/themes";
+import { Theme } from "@promptify/ui";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 

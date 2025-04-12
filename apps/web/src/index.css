@@ -1,4 +1,5 @@
-@import "@radix-ui/themes/styles.css";
+/* UI 패키지에서 스타일을 가져옵니다 */
+@import "@promptify/ui/src/styles.css";
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 
 .radix-themes {

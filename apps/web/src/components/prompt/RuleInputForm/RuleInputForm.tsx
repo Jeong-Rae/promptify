@@ -1,21 +1,25 @@
 import { Flex } from "@promptify/ui";
-import { useState } from "react";
 
-import PromptAddButton from "./PromptAddButton";
-import PromptList from "./PromptList";
-import RuleNameInput from "./RuleNameInput";
+import PromptAddButton from "@components/prompt/PromptAddButton";
+import PromptListView from "@components/prompt/PromptListView";
+import PromptResetButton from "@components/prompt/PromptResetButton";
+import RuleNameInput from "@components/prompt/RuleNameInput";
+
+import { RuleFormProvider } from "../RuleFormContext";
 
 import type { ReactNode } from "react";
 
 export default function RuleInputForm(): ReactNode {
-    const [prompts] = useState<string[]>([""]);
-
     return (
-        <Flex direction="column" gap="3" m="0">
-            <RuleNameInput />
-            <PromptList prompts={prompts} />
-
-            <PromptAddButton />
-        </Flex>
+        <RuleFormProvider>
+            <Flex direction="column" gap="3" m="0">
+                <RuleNameInput />
+                <PromptListView />
+                <Flex gap="2">
+                    <PromptAddButton />
+                    <PromptResetButton />
+                </Flex>
+            </Flex>
+        </RuleFormProvider>
     );
 }
