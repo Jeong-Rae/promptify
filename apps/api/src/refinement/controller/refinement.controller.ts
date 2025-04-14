@@ -9,6 +9,9 @@ export class RefinementController {
   @Post()
   async refine(@Body() refinementDto: RefinementRequestDto) {
     const { rules, text, config } = refinementDto;
-    return this.refinementService.refine(rules, text, config);
+    const result = await this.refinementService.refine(rules, text, config);
+    return {
+      refinedText: result,
+    };
   }
 }

@@ -1,22 +1,8 @@
-import axios from "axios";
+import { fetcher } from "./axios";
 
-import type { LlmModel, LlmProvider } from "@promptify/types";
-
-export type RefineRequest = {
-    rules: string[];
-    text: string;
-    config: {
-        provider: LlmProvider;
-        model: LlmModel;
-        apiKey: string;
-    };
-};
-
-export type RefineResponse = {
-    refinedText: string;
-};
+import type { RefineRequest, RefineResponse } from "@promptify/types";
 
 export async function postRefinement(request: RefineRequest): Promise<RefineResponse> {
-    const response = await axios.post("/refinement", request);
+    const response = await fetcher.post("/refinement", request);
     return response.data;
 }
