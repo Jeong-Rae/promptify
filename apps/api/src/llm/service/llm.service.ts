@@ -52,8 +52,6 @@ export class LlmService {
           text,
         });
 
-        Logger.log(system);
-        Logger.log(user);
         return [new SystemMessage(system), new HumanMessage(user)];
       },
       chatModel,

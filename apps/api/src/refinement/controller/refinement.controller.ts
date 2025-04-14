@@ -8,10 +8,7 @@ export class RefinementController {
 
   @Post()
   async refine(@Body() refinementDto: RefinementRequestDto) {
-    return this.refinementService.refine(
-      refinementDto.rules,
-      refinementDto.text,
-      refinementDto.config,
-    );
+    const { rules, text, config } = refinementDto;
+    return this.refinementService.refine(rules, text, config);
   }
 }

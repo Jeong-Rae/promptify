@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { LlmService } from './service/llm.service';
-import { LlmController } from './controller/llm.controller';
 import { ChatModelFactory } from './service/chat-model.factory';
+import { LlmController } from './controller/llm.controller';
 
 @Module({
   controllers: [LlmController],
