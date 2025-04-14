@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { LlmService } from '../llm/llm.service';
-import { LlmProvider } from '../llm/llm.contant';
+import { LlmProvider, LlmModel } from '../llm/llm.contant';
 @Injectable()
 export class RefinementService {
   constructor(private readonly llmService: LlmService) {}
@@ -10,7 +10,7 @@ export class RefinementService {
     text: string,
     config: {
       provider: LlmProvider;
-      model: string;
+      model: LlmModel;
       apiKey: string;
     },
   ): Promise<string> {
