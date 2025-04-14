@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { LlmService } from '../llm/llm.service';
-import { LlmProvider, LlmModel } from '../llm/llm.contant';
+import { LlmService } from '../../llm/service/llm.service';
+import { LlmProvider, LlmModel } from '../../llm/contant/llm.contant';
 @Injectable()
 export class RefinementService {
   constructor(private readonly llmService: LlmService) {}

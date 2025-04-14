@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ChatModelFactory } from './chat-model.factory';
-import { LlmProvider } from './llm.contant';
+import { LlmProvider } from '../contant/llm.contant';
 import { BaseChatModel } from '@langchain/core/language_models/chat_models';
 import {
   AIMessageChunk,
@@ -8,7 +8,7 @@ import {
   SystemMessage,
 } from '@langchain/core/messages';
 import { RunnableSequence } from '@langchain/core/runnables';
-import { refineSystemPrompt, refineUserPrompt } from './prompt';
+import { refineSystemPrompt, refineUserPrompt } from '../contant/prompt';
 
 @Injectable()
 export class LlmService {

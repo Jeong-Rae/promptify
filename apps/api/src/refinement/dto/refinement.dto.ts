@@ -1,4 +1,4 @@
-import { LlmModel, LlmProvider } from '../../llm/llm.contant';
+import { LlmModel, LlmProvider } from '../../llm/contant/llm.contant';
 
 export class RefinementRequestDto {
   rules: string[];

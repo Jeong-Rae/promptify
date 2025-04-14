@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { RefinementService } from './refinement.service';
-import { RefinementController } from './refinement.controller';
+import { RefinementService } from './service/refinement.service';
+import { RefinementController } from './controller/refinement.controller';
 import { LlmModule } from '../llm/llm.module';
 @Module({
   controllers: [RefinementController],

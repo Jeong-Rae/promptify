@@ -1,6 +1,6 @@
 import { ChatOpenAI } from '@langchain/openai';
 import { Injectable } from '@nestjs/common';
-import { LLM_PROVIDERS, LlmProvider } from './llm.contant';
+import { LLM_PROVIDERS, LlmProvider } from '../contant/llm.contant';
 import { ChatAnthropic } from '@langchain/anthropic';
 import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
 import { BaseChatModel } from '@langchain/core/language_models/chat_models';
