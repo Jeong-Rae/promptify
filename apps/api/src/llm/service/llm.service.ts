@@ -1,6 +1,6 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ChatModelFactory } from './chat-model.factory';
-import { LlmProvider } from '../contant/llm.contant';
+import { LLM_MODELS, LLM_PROVIDERS, LlmProvider } from '../contant/llm.contant';
 import { BaseChatModel } from '@langchain/core/language_models/chat_models';
 import {
   AIMessageChunk,
@@ -34,7 +34,6 @@ export class LlmService {
       text: message,
     });
 
-    Logger.log(result);
     return result;
   }
 
@@ -59,5 +58,23 @@ export class LlmService {
     ]);
 
     return chain;
+  }
+
+  getAvailableLlmModels(provider?: LlmProvider) {
+    switch (provider) {
+      case LLM_PROVIDERS.OPENAI:
+        return Object.values(LLM_MODELS.OpenAI);
+      case LLM_PROVIDERS.ANTHROPIC:
+        return Object.values(LLM_MODELS.Anthropic);
+      case LLM_PROVIDERS.GEMINI:
+        return Object.values(LLM_MODELS.Gemini);
+      default:
+        return Object.fromEntries(
+          Object.entries(LLM_MODELS).map(([providerKey, modelsObject]) => [
+            providerKey,
+            Object.values(modelsObject),
+          ]),
+        );
+    }
   }
 }
