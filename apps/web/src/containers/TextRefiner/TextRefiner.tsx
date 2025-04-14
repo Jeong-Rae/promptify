@@ -1,9 +1,11 @@
+import { LLM_PROVIDERS, LLM_MODELS } from "@promptify/common";
 import { Flex } from "@promptify/ui";
 import { useState, type JSX } from "react";
 
 import InputTextArea from "@components/editor/InputTextArea";
 import RefineButton from "@components/editor/RefineButton";
 import OutputArea from "@components/viewer/OutputArea";
+import { useRuleFormContext } from "@contexts/RuleFormContext";
 import { useRefineText } from "@hooks/useRefineText";
 
 import styles from "./TextRefiner.module.scss";
@@ -13,14 +15,16 @@ export default function TextRefiner(): JSX.Element {
     const [outputText, setOutputText] = useState("");
     const { mutate, isPending } = useRefineText();
 
+    const { prompts } = useRuleFormContext();
+
     const handleSubmit = () => {
         mutate(
             {
-                rules: ["오탈자 수정", "자연스러운 흐름"],
+                rules: prompts,
                 text: inputText,
                 config: {
-                    provider: "openai",
-                    model: "gpt-4o",
+                    provider: LLM_PROVIDERS.OPENAI,
+                    model: LLM_MODELS.OpenAI.GPT4O_MINI,
                     apiKey: "your-api-key",
                 },
             },

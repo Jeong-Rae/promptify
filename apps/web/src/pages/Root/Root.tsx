@@ -1,13 +1,16 @@
 import PromptManager from "@containers/PromptManager";
 import TextRefiner from "@containers/TextRefiner";
+import { RuleFormProvider } from "@contexts/RuleFormContext";
 
-import type { ReactNode } from "react";
+import type { JSX } from "react";
 
-export default function RootPage(): ReactNode {
+export default function RootPage(): JSX.Element {
     return (
-        <main>
-            <PromptManager />
-            <TextRefiner />
-        </main>
+        <RuleFormProvider>
+            <main>
+                <PromptManager />
+                <TextRefiner />
+            </main>
+        </RuleFormProvider>
     );
 }

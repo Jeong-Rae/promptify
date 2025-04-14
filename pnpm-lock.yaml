@@ -148,6 +148,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@promptify/common':
+        specifier: workspace:*
+        version: link:../../packages/common
       '@promptify/types':
         specifier: workspace:*
         version: link:../../packages/types

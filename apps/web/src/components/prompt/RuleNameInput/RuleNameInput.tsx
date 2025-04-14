@@ -2,7 +2,7 @@ import { TextField } from "@promptify/ui";
 import clsx from "clsx";
 import { useState } from "react";
 
-import { useRuleFormContext } from "../RuleFormContext";
+import { useRuleFormContext } from "../../../contexts/RuleFormContext";
 
 import styles from "./RuleNameInput.module.scss";
 

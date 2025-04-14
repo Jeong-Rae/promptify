@@ -1,7 +1,7 @@
 import { Flex } from "@promptify/ui";
 
+import { useRuleFormContext } from "../../../contexts/RuleFormContext";
 import PromptItem from "../PromptItem";
-import { useRuleFormContext } from "../RuleFormContext";
 
 import styles from "./PromptListView.module.scss";
 

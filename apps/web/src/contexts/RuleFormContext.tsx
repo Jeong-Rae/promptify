@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-import { useRuleForm } from "./useRuleForm";
+import { useRuleForm } from "../hooks/useRuleForm";
 
 import type { Prompt, PromptList } from "@promptify/types";
 import type { JSX, ReactNode } from "react";

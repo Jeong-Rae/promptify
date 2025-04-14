@@ -5,7 +5,7 @@ import PromptListView from "@components/prompt/PromptListView";
 import PromptResetButton from "@components/prompt/PromptResetButton";
 import RuleNameInput from "@components/prompt/RuleNameInput";
 
-import { RuleFormProvider } from "../RuleFormContext";
+import { RuleFormProvider } from "../../../contexts/RuleFormContext";
 
 import type { ReactNode } from "react";
 

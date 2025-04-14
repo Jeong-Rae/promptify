@@ -29,10 +29,11 @@
             "@components/*": ["src/components/*"],
             "@constants/*": ["src/constants/*"],
             "@containers/*": ["src/containers/*"],
+            "@contexts/*": ["src/contexts/*"],
             "@hooks/*": ["src/hooks/*"],
             "@pages/*": ["src/pages/*"],
             "@types/*": ["../../packages/shared/types/*"],
-            "@api/*": ["src/api/*"]
+            "@api/*": ["src/api/*"],
         }
     },
     "include": ["src", "../../packages/shared/types", "../../packages/types/src"]

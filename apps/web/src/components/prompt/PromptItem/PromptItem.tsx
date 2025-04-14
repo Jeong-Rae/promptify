@@ -1,7 +1,7 @@
 import { TextArea } from "@promptify/ui";
 import clsx from "clsx";
 
-import { useRuleFormContext } from "../RuleFormContext";
+import { useRuleFormContext } from "../../../contexts/RuleFormContext";
 
 import styles from "./PromptItem.module.scss";
 
