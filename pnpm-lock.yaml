@@ -54,9 +54,15 @@ importers:
       '@nestjs/platform-express':
         specifier: ^11.0.1
         version: 11.0.15(@nestjs/common@11.0.15(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.0.15)
+      '@promptify/common':
+        specifier: workspace:*
+        version: link:../../packages/common
+      '@promptify/types':
+        specifier: workspace:*
+        version: link:../../packages/types
       langchain:
         specifier: ^0.3.21
-        version: 0.3.21(@langchain/anthropic@0.3.17(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2))))(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2)))(@langchain/google-genai@0.2.3(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2)))(zod@3.24.2))(openai@4.93.0(zod@3.24.2))
+        version: 0.3.21(@langchain/anthropic@0.3.17(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2))))(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2)))(@langchain/google-genai@0.2.3(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2)))(zod@3.24.2))(axios@1.8.4)(openai@4.93.0(zod@3.24.2))
       reflect-metadata:
         specifier: ^0.2.2
         version: 0.2.2
@@ -148,6 +154,12 @@ importers:
       '@promptify/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@tanstack/react-query':
+        specifier: ^5.74.3
+        version: 5.74.3(react@19.1.0)
+      axios:
+        specifier: ^1.8.4
+        version: 1.8.4
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -221,6 +233,18 @@ importers:
       vite:
         specifier: ^6.2.0
         version: 6.2.6(@types/node@22.14.0)(sass@1.86.3)(terser@5.39.0)(yaml@2.7.1)
+
+  packages/common:
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.10
+        version: 19.1.0
+      tsup:
+        specifier: ^8.0.2
+        version: 8.4.0(@swc/core@1.11.20)(postcss@8.5.3)(typescript@5.7.3)(yaml@2.7.1)
+      typescript:
+        specifier: ~5.7.3
+        version: 5.7.3
 
   packages/types: {}
 
@@ -2153,6 +2177,14 @@ packages:
     resolution: {integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==}
     engines: {node: '>=14.16'}
 
+  '@tanstack/query-core@5.74.3':
+    resolution: {integrity: sha512-Mqk+5o3qTuAiZML248XpNH8r2cOzl15+LTbUsZQEwvSvn1GU4VQhvqzAbil36p+MBxpr/58oBSnRzhrBevDhfg==}
+
+  '@tanstack/react-query@5.74.3':
+    resolution: {integrity: sha512-QrycUn0wxjVPzITvQvOxFRdhlAwIoOQSuav7qWD4SWCoKCdLbyRZ2vji2GuBq/glaxbF4wBx3fqcYRDOt8KDTA==}
+    peerDependencies:
+      react: ^18 || ^19
+
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
 
@@ -2696,6 +2728,9 @@ packages:
   available-typed-arrays@1.0.7:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
+
+  axios@1.8.4:
+    resolution: {integrity: sha512-eBSYY4Y68NNlHbHBMdeDmKNtDgXWhQsJcGqzO3iLUM0GraQFSS9cVgPX5I9b3lbdFKyYoAEGAZF1DwhTaljNAw==}
 
   b4a@1.6.7:
     resolution: {integrity: sha512-OnAYlL5b7LEkALw87fUVafQw5rVR9RjwGd4KUwNQ6DrrNmaVaUCgLipfVlzrPQ4tWOR9P0IXGNOx50jYCCdSJg==}
@@ -3506,6 +3541,15 @@ packages:
 
   flatted@3.3.3:
     resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
+
+  follow-redirects@1.15.9:
+    resolution: {integrity: sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
 
   for-each@0.3.5:
     resolution: {integrity: sha512-dKx12eRCVIzqCxFGplyFKJMPvLEWgmNtUrpTiJIR5u97zEhRG8ySrtboPHZXx7daLxQVrl643cTzbab2tkQjxg==}
@@ -4791,6 +4835,9 @@ packages:
   proxy-addr@2.0.7:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
     engines: {node: '>= 0.10'}
+
+  proxy-from-env@1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
@@ -7774,6 +7821,13 @@ snapshots:
     dependencies:
       defer-to-connect: 2.0.1
 
+  '@tanstack/query-core@5.74.3': {}
+
+  '@tanstack/react-query@5.74.3(react@19.1.0)':
+    dependencies:
+      '@tanstack/query-core': 5.74.3
+      react: 19.1.0
+
   '@tokenizer/token@0.3.0': {}
 
   '@trivago/prettier-plugin-sort-imports@5.2.2(prettier@3.5.3)':
@@ -8399,6 +8453,14 @@ snapshots:
   available-typed-arrays@1.0.7:
     dependencies:
       possible-typed-array-names: 1.1.0
+
+  axios@1.8.4:
+    dependencies:
+      follow-redirects: 1.15.9
+      form-data: 4.0.2
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
 
   b4a@1.6.7: {}
 
@@ -9341,6 +9403,8 @@ snapshots:
 
   flatted@3.3.3: {}
 
+  follow-redirects@1.15.9: {}
+
   for-each@0.3.5:
     dependencies:
       is-callable: 1.2.7
@@ -10205,7 +10269,7 @@ snapshots:
 
   kleur@3.0.3: {}
 
-  langchain@0.3.21(@langchain/anthropic@0.3.17(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2))))(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2)))(@langchain/google-genai@0.2.3(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2)))(zod@3.24.2))(openai@4.93.0(zod@3.24.2)):
+  langchain@0.3.21(@langchain/anthropic@0.3.17(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2))))(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2)))(@langchain/google-genai@0.2.3(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2)))(zod@3.24.2))(axios@1.8.4)(openai@4.93.0(zod@3.24.2)):
     dependencies:
       '@langchain/core': 0.3.44(openai@4.93.0(zod@3.24.2))
       '@langchain/openai': 0.5.5(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2)))
@@ -10223,6 +10287,7 @@ snapshots:
     optionalDependencies:
       '@langchain/anthropic': 0.3.17(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2)))
       '@langchain/google-genai': 0.2.3(@langchain/core@0.3.44(openai@4.93.0(zod@3.24.2)))(zod@3.24.2)
+      axios: 1.8.4
     transitivePeerDependencies:
       - encoding
       - openai
@@ -10713,6 +10778,8 @@ snapshots:
     dependencies:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
+
+  proxy-from-env@1.1.0: {}
 
   punycode@2.3.1: {}
 

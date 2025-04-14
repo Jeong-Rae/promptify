@@ -20,6 +20,8 @@
     "dev": "nest start --watch --no-clear"
   },
   "dependencies": {
+    "@promptify/types": "workspace:*",
+    "@promptify/common": "workspace:*",
     "@langchain/anthropic": "^0.3.17",
     "@langchain/core": "^0.3.44",
     "@langchain/google-genai": "^0.2.3",
