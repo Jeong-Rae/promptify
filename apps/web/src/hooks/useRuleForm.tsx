@@ -1,10 +1,11 @@
 import { isEqual, isNil } from "es-toolkit";
-import { useState } from "react";
-import { useStorageState } from "react-simplikit";
+import { useState, useEffect } from "react";
+import { useStorageState, useDebounce } from "react-simplikit";
 
 import type { Prompt, PromptList } from "@promptify/types";
 
 const RULE_FORM_STORAGE_KEY = "draft:rule-form";
+const DEBOUNCE_SAVE_DELAY_MS = 1000;
 
 type RuleFormDraft = {
     ruleName: string;
@@ -29,56 +30,94 @@ const EMPTY_FORM: RuleFormDraft = {
 };
 
 export function useRuleForm(): RuleFormReturn {
-    const [formState, setFormState] = useStorageState<RuleFormDraft>(RULE_FORM_STORAGE_KEY, {
-        defaultValue: EMPTY_FORM,
+    const [storedFormState, setStoredFormState] = useStorageState<RuleFormDraft>(
+        RULE_FORM_STORAGE_KEY,
+        {
+            defaultValue: EMPTY_FORM,
+        }
+    );
+
+    const [localRuleName, setLocalRuleName] = useState<string>(
+        () => storedFormState?.ruleName ?? EMPTY_FORM.ruleName
+    );
+    const [localPrompts, setLocalPrompts] = useState<PromptList>(
+        () => storedFormState?.prompts ?? EMPTY_FORM.prompts
+    );
+
+    const debouncedSetStoredFormState = useDebounce(setStoredFormState, DEBOUNCE_SAVE_DELAY_MS);
+
+    const getCurrentLocalDraft = (): RuleFormDraft => ({
+        ruleName: localRuleName,
+        prompts: localPrompts,
     });
+
+    useEffect(() => {
+        const isExternalChange =
+            storedFormState && !isEqual(storedFormState, getCurrentLocalDraft());
+        const isStorageCleared = !storedFormState && !isEqual(getCurrentLocalDraft(), EMPTY_FORM);
+
+        if (isExternalChange) {
+            setLocalRuleName(storedFormState.ruleName);
+            setLocalPrompts(storedFormState.prompts);
+        } else if (isStorageCleared) {
+            setLocalRuleName(EMPTY_FORM.ruleName);
+            setLocalPrompts(EMPTY_FORM.prompts);
+        }
+    }, [storedFormState]);
 
     const [backup, setBackup] = useState<RuleFormDraft | null>(null);
 
     const updateRuleName = (name: string): void => {
-        setFormState((prev: RuleFormDraft) => ({ ...prev, ruleName: name }));
+        setLocalRuleName(name);
+        debouncedSetStoredFormState({ ruleName: name, prompts: localPrompts });
     };
 
     const updatePrompt = (targetIndex: number, newPrompt: Prompt): void => {
-        setFormState((prev: RuleFormDraft) => {
-            const updatedPrompts = prev.prompts.map((prompt: Prompt, index: number) =>
-                index === targetIndex ? newPrompt : prompt
-            );
-            return { ...prev, prompts: updatedPrompts };
-        });
+        const updatedPrompts = localPrompts.map((prompt, index) =>
+            index === targetIndex ? newPrompt : prompt
+        );
+        setLocalPrompts(updatedPrompts);
+        debouncedSetStoredFormState({ ruleName: localRuleName, prompts: updatedPrompts });
     };
 
     const addPrompt = (): void => {
-        setFormState((prev: RuleFormDraft) => ({ ...prev, prompts: [...prev.prompts, ""] }));
+        const nextPrompts = [...localPrompts, ""];
+        setLocalPrompts(nextPrompts);
+        debouncedSetStoredFormState({ ruleName: localRuleName, prompts: nextPrompts });
     };
 
     const removePrompt = (targetIndex: number): void => {
-        setFormState((prev: RuleFormDraft) => {
-            const nextPrompts =
-                prev.prompts.length <= 1
-                    ? [""]
-                    : prev.prompts.filter((_: Prompt, index: number) => index !== targetIndex);
-            return { ...prev, prompts: nextPrompts };
-        });
+        const nextPrompts =
+            localPrompts.length <= 1
+                ? [""]
+                : localPrompts.filter((_, index) => index !== targetIndex);
+        setLocalPrompts(nextPrompts);
+        debouncedSetStoredFormState({ ruleName: localRuleName, prompts: nextPrompts });
     };
 
     const resetForm = (): void => {
-        setBackup(formState);
-        setFormState(EMPTY_FORM);
+        debouncedSetStoredFormState.cancel();
+        setBackup(getCurrentLocalDraft());
+        setLocalRuleName(EMPTY_FORM.ruleName);
+        setLocalPrompts(EMPTY_FORM.prompts);
+        setStoredFormState(EMPTY_FORM);
     };
 
     const restoreForm = (): void => {
         if (backup) {
-            setFormState(backup);
+            debouncedSetStoredFormState.cancel();
+            setLocalRuleName(backup.ruleName);
+            setLocalPrompts(backup.prompts);
+            setStoredFormState(backup);
             setBackup(null);
         }
     };
 
-    const hasBackup = !isNil(backup) && isEqual(formState, EMPTY_FORM);
+    const hasBackup = !isNil(backup) && isEqual(getCurrentLocalDraft(), EMPTY_FORM);
 
     return {
-        ruleName: formState.ruleName,
-        prompts: formState.prompts,
+        ruleName: localRuleName,
+        prompts: localPrompts,
         updateRuleName,
         updatePrompt,
         addPrompt,

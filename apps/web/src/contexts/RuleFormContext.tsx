@@ -14,7 +14,6 @@ type RuleFormContextType = {
     removePrompt: (index: number) => void;
     resetForm: () => void;
     restoreForm: () => void;
-    saveToLocalStorage: () => void;
     hasBackup: boolean;
 };
 
