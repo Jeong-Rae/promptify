@@ -5,3 +5,4 @@ export * from "./Text";
 export * from "./Flex";
 export * from "./Heading";
 export * from "./Theme";
+export * from "./Select";

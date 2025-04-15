@@ -1,0 +1,21 @@
+.ModelSelector {
+  &__select {
+    width: 220px;
+  }
+  
+  &__label {
+    font-weight: bold;
+
+    &--openai {
+      color: #0ea5e9;
+    }
+
+    &--anthropic {
+      color: #8b5cf6;
+    }
+
+    &--gemini {
+      color: #f59e0b;
+    }
+  }
+} 
